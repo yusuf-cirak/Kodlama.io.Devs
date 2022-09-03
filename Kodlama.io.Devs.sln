@@ -39,6 +39,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kodlama.io.Devs.Persistence
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kodlama.io.Devs.WebAPI", "src\kodlamaioDevs\Kodlama.io.Devs.WebAPI\Kodlama.io.Devs.WebAPI.csproj", "{D4F4EEA2-D685-4E3E-B187-4B537653E7B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{486AF089-D8B8-4EBB-9768-DE8BF199936D} = {486AF089-D8B8-4EBB-9768-DE8BF199936D}
+		{9685BC58-4CB8-4043-B14F-F55248B3EB2C} = {9685BC58-4CB8-4043-B14F-F55248B3EB2C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
