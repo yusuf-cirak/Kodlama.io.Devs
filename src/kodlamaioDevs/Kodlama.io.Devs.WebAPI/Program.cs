@@ -1,6 +1,13 @@
+using Kodlama.io.Devs.Application;
+using Kodlama.io.Devs.Infrastructure;
+using Kodlama.io.Devs.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
+builder.Services.AddPersistenceServices();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
