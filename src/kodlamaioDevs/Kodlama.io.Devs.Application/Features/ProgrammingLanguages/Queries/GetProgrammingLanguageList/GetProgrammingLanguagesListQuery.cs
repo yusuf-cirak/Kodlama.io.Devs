@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Requests;
 using Core.Persistence.Paging;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Models;
@@ -13,8 +14,9 @@ using MediatR;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetProgrammingLanguageList
 {
-    public class GetProgrammingLanguageListQueryRequest:PageRequest,IRequest<GetProgrammingLanguageListQueryResponse>
+    public class GetProgrammingLanguageListQueryRequest:PageRequest,IRequest<GetProgrammingLanguageListQueryResponse>,ISecuredRequest
     {
+        public string[] Roles { get; } = { "Admin","User" };
     }
 
     public class GetProgrammingLanguageListQueryHandler:IRequestHandler<GetProgrammingLanguageListQueryRequest,GetProgrammingLanguageListQueryResponse>
