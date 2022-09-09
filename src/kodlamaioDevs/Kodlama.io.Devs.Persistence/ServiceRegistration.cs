@@ -17,5 +17,7 @@ public static class ServiceRegistration
         });
 
         services.AddScoped<IProgrammingLanguageRepository,ProgrammingLanguageRepository>();
+        services.AddScoped<IProgrammingTechnologyRepository, ProgrammingTechnologyRepository>();
+
     }
 }
