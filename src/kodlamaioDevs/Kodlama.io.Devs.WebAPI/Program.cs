@@ -32,6 +32,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
 });
 
+builder.Services.AddHttpClient("GithubUserProfile",config =>
+{
+    config.BaseAddress = new Uri("https://api.github.com/users/");
+    config.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

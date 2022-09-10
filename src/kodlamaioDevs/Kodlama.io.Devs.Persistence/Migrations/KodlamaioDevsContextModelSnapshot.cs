@@ -39,6 +39,18 @@ namespace Kodlama.io.Devs.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OperationClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "User"
+                        });
                 });
 
             modelBuilder.Entity("Core.Security.Entities.RefreshToken", b =>
@@ -158,6 +170,66 @@ namespace Kodlama.io.Devs.Persistence.Migrations
                     b.ToTable("UserOperationClaims", (string)null);
                 });
 
+            modelBuilder.Entity("Kodlama.io.Devs.Domain.Entities.GithubProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Blog")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Blog");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Company");
+
+                    b.Property<int>("Followers")
+                        .HasColumnType("int")
+                        .HasColumnName("Followers");
+
+                    b.Property<int>("Following")
+                        .HasColumnType("int")
+                        .HasColumnName("Following");
+
+                    b.Property<string>("HtmlUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("HtmlUrl");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Location");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Login");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.Property<int>("PublicRepos")
+                        .HasColumnType("int")
+                        .HasColumnName("PublicRepos");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("GithubProfiles", (string)null);
+                });
+
             modelBuilder.Entity("Kodlama.io.Devs.Domain.Entities.ProgrammingLanguage", b =>
                 {
                     b.Property<int>("Id")
@@ -265,6 +337,17 @@ namespace Kodlama.io.Devs.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("OperationClaim");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Kodlama.io.Devs.Domain.Entities.GithubProfile", b =>
+                {
+                    b.HasOne("Core.Security.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

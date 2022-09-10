@@ -20,6 +20,7 @@ public static class ServiceRegistration
         services.AddScoped<IProgrammingTechnologyRepository, ProgrammingTechnologyRepository>();
 
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IGithubProfileRepository, GithubProfileRepository>();
 
 
     }

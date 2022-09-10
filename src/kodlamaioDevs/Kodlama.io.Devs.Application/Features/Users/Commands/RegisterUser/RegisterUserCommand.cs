@@ -46,7 +46,10 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser
 
            User createdUser = await _userRepository.AddAsync(user);
 
-           AccessToken token=_tokenHelper.CreateToken(createdUser, new List<OperationClaim>());
+           var operationClaims = new List<OperationClaim>();
+           operationClaims.Add(new(2,"User"));
+
+           AccessToken token=_tokenHelper.CreateToken(createdUser,operationClaims);
 
            return new() { AccessToken = token };
 

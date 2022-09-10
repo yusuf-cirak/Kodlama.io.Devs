@@ -15,6 +15,8 @@ public class KodlamaioDevsContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<OperationClaim> OperationClaims { get; set; }
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+    public DbSet<GithubProfile> GithubProfiles { get; set; }
+
 
 
 
@@ -82,8 +84,25 @@ public class KodlamaioDevsContext : DbContext
 
             a.HasOne(uop => uop.OperationClaim);
             a.HasOne(uop => uop.User);
+        });
 
 
+        modelBuilder.Entity<GithubProfile>(a =>
+        {
+            a.ToTable("GithubProfiles").HasKey(g => g.Id);
+            a.Property(g => g.Id).HasColumnName("Id");
+            a.Property(g => g.UserId).HasColumnName("UserId");
+            a.Property(g => g.Login).HasColumnName("Login");
+            a.Property(g => g.HtmlUrl).HasColumnName("HtmlUrl");
+            a.Property(g => g.Name).HasColumnName("Name");
+            a.Property(g => g.Company).HasColumnName("Company");
+            a.Property(g => g.Blog).HasColumnName("Blog");
+            a.Property(g => g.Location).HasColumnName("Location");
+            a.Property(g => g.PublicRepos).HasColumnName("PublicRepos");
+            a.Property(g => g.Followers).HasColumnName("Followers");
+            a.Property(g => g.Following).HasColumnName("Following");
+
+            a.HasOne(g => g.User);
         });
 
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
+using Kodlama.io.Devs.Application.Features.GithubProfiles.Rules;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Rules;
 using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Rules;
 using Kodlama.io.Devs.Application.Features.Users.Rules;
@@ -28,6 +29,8 @@ namespace Kodlama.io.Devs.Application
             services.AddScoped<ProgrammingTechnologyBusinessRules>();
 
             services.AddScoped<UserBusinessRules>();
+
+            services.AddScoped<GithubProfileBusinessRules>();
 
 
 
