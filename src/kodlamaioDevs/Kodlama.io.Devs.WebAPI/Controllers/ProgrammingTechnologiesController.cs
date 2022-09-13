@@ -5,7 +5,6 @@ using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.Dele
 using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.UpdateProgrammingTechnology;
 using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Queries.GetProgammingTechnologyList;
 using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Queries.GetProgrammingTechnologyListDynamic;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kodlama.io.Devs.WebAPI.Controllers
@@ -14,35 +13,35 @@ namespace Kodlama.io.Devs.WebAPI.Controllers
     [ApiController]
     public class ProgrammingTechnologiesController : BaseController
     {
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddProgrammingTechnologyCommandRequest request)
         {
             AddProgrammingTechnologyCommandResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateProgrammingTechnologyCommandRequest request)
         {
             UpdateProgrammingTechnologyCommandResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteProgrammingTechnologyCommandRequest request)
         {
             DeleteProgrammingTechnologyCommandResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] GetProgrammingTechnologyListQueryRequest request)
         {
             GetProgrammingTechnologyListQueryResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpPost("[action]")]
+        [HttpPost("dynamic")]
         public async Task<IActionResult> GetListDynamic([FromQuery] PageRequest pageRequest,[FromBody] Dynamic dynamic)
         {
             GetProgrammingTechnologyListDynamicQueryResponse response = await Mediator.Send(new GetProgrammingTechnologyListDynamicQueryRequest{PageRequest = pageRequest,Dynamic = dynamic});

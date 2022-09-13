@@ -11,35 +11,35 @@ namespace Kodlama.io.Devs.WebAPI.Controllers;
     [ApiController]
     public class ProgrammingLanguagesController : BaseController
     {
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddProgrammingLanguageCommandRequest request)
         {
             AddProgrammingLanguageCommandResponse response = await Mediator.Send(request);
             return Created("", response);
         }
         
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateProgrammingLanguageCommandRequest request)
         {
             UpdateProgrammingLanguageCommandResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteProgrammingLanguageCommandRequest request)
         {
             DeleteProgrammingLanguageCommandResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] GetProgrammingLanguageListQueryRequest request)
         {
             GetProgrammingLanguageListQueryResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpGet("[action]/{Id}")]
+        [HttpGet("{Id}")]
         public async Task<IActionResult> GetById([FromRoute] GetProgrammingLanguageByIdQueryRequest request)
         {
             GetProgrammingLanguageByIdQueryResponse response = await Mediator.Send(request);

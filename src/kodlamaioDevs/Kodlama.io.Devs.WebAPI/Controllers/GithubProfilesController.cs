@@ -10,21 +10,21 @@ namespace Kodlama.io.Devs.WebAPI.Controllers
     [ApiController]
     public class GithubProfilesController : BaseController
     {
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddGithubProfileCommandRequest request)
         {
             AddGithubProfileCommandResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteGithubProfileCommandRequest request)
         {
             DeleteGithubProfileCommandResponse response = await Mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateGithubProfileCommandRequest request)
         {
             UpdateGithubProfileCommandResponse response = await Mediator.Send(request);
