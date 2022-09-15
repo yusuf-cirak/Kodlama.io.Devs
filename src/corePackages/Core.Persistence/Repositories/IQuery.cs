@@ -1,6 +1,6 @@
 ﻿namespace Core.Persistence.Repositories;
 
-public interface IQuery<T>
+public interface IQuery<out T>
 {
     IQueryable<T> Query();
 }
