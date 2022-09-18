@@ -1,4 +1,5 @@
-﻿using Core.CrossCuttingConcerns.Exceptions;
+﻿using System.Reflection;
+using Core.CrossCuttingConcerns.Exceptions;
 using Core.Security.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -19,12 +20,17 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
                                         RequestHandlerDelegate<TResponse> next)
     {
-        List<string>? roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
+        List<string> roleClaimsFromToken = _httpContextAccessor.HttpContext.User.ClaimRoles()!;
 
-        if (roleClaims == null) throw new AuthorizationException("Claims not found.");
+
+        string[]? roleClaimsFromAttribute = request.GetType().GetCustomAttribute<AuthorizeAttribute>()?.Roles;
+
+
+        if (roleClaimsFromAttribute == null) throw new AuthorizationException("Claims not found.");
+
 
         bool isNotMatchedARoleClaimWithRequestRoles =
-            roleClaims.FirstOrDefault(roleClaim => request.Roles.Any(role => role == roleClaim)).IsNullOrEmpty();
+            roleClaimsFromToken.FirstOrDefault(roleClaim => roleClaimsFromAttribute.Any(role => role == roleClaim)).IsNullOrEmpty();
         if (isNotMatchedARoleClaimWithRequestRoles) throw new AuthorizationException("You are not authorized.");
 
         TResponse response = await next();

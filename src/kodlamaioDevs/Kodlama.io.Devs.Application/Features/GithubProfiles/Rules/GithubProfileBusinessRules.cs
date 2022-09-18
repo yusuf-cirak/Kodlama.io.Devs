@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Rules
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IGithubProfileRepository _githubProfileRepository;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public GithubProfileBusinessRules(IHttpClientFactory httpClientFactory, IGithubProfileRepository githubProfileRepository, IHttpContextAccessor httpContextAccessor)
         {
