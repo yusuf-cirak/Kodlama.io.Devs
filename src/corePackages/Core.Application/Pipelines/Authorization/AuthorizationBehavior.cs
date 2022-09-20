@@ -22,6 +22,8 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
     {
         List<string> roleClaimsFromToken = _httpContextAccessor.HttpContext.User.ClaimRoles()!;
 
+        if (roleClaimsFromToken == null) throw new AuthorizationException("Claims not found.");
+
 
         string[]? roleClaimsFromAttribute = request.GetType().GetCustomAttribute<AuthorizeAttribute>()?.Roles;
 

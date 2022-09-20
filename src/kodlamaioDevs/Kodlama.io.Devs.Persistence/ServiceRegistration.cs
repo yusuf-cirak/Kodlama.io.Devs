@@ -22,6 +22,11 @@ public static class ServiceRegistration
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IGithubProfileRepository, GithubProfileRepository>();
 
+        services.AddScoped<IUserOperationClaimRepository,UserOperationClaimRepository>();
+        services.AddScoped<IOperationClaimRepository, OperationClaimRepository>();
+
+
+
 
     }
 }

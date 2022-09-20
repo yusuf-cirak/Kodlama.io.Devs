@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,13 +25,15 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser
         private readonly IUserRepository _userRepository;
         private readonly ITokenHelper _tokenHelper;
         private readonly UserBusinessRules _userBusinessRules;
+        private readonly IUserOperationClaimRepository _userOperationClaimRepository;
 
-        public RegisterUserCommandHandler(IMapper mapper, IUserRepository userRepository, ITokenHelper tokenHelper, UserBusinessRules userBusinessRules)
+        public RegisterUserCommandHandler(IMapper mapper, IUserRepository userRepository, ITokenHelper tokenHelper, UserBusinessRules userBusinessRules, IUserOperationClaimRepository userOperationClaimRepository)
         {
             _mapper = mapper;
             _userRepository = userRepository;
             _tokenHelper = tokenHelper;
             _userBusinessRules = userBusinessRules;
+            _userOperationClaimRepository = userOperationClaimRepository;
         }
 
         public async Task<RegisterUserCommandResponse> Handle(RegisterUserCommandRequest request, CancellationToken cancellationToken)
@@ -41,13 +44,26 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser
            User user = _mapper.Map<User>(request);
            user.PasswordSalt = passwordSalt;
            user.PasswordHash = passwordHash;
-           user.Status = true;
+           //user.Status = true;
+
+
+           List<OperationClaim> operationClaims = new List<OperationClaim>();
+
+           operationClaims.Add(new OperationClaim(2,"User"));
+
+
+
+           var userOperationClaims = new List<UserOperationClaim>();
 
 
            User createdUser = await _userRepository.AddAsync(user);
 
-           var operationClaims = new List<OperationClaim>();
-           operationClaims.Add(new(2,"User"));
+           userOperationClaims.Add(new(0, user.Id, operationClaims[0].Id));
+
+
+           await _userOperationClaimRepository.AddRangeAsync(userOperationClaims);
+
+
 
            AccessToken token=_tokenHelper.CreateToken(createdUser,operationClaims);
 

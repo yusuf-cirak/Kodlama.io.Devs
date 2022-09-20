@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using Core.Persistence.Dynamic;
 using Core.Persistence.Paging;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
     }
 
     public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>?
-        include = null, bool enableTracking=true)
+        include = null, bool enableTracking = true)
     {
         IQueryable<TEntity> queryable = Query();
 
@@ -69,6 +70,19 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
         Context.Entry(entity).State = EntityState.Added;
         await Context.SaveChangesAsync();
         return entity;
+    }
+
+    public async Task<IList<TEntity>> AddRangeAsync(IList<TEntity> entities)
+    {
+
+        foreach (TEntity entity in entities)
+        {
+            Context.Entry(entity).State = EntityState.Added;
+        }
+
+        await Context.SaveChangesAsync();
+
+        return entities;
     }
 
     public async Task<TEntity> UpdateAsync(TEntity entity)
@@ -127,6 +141,19 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
         Context.Entry(entity).State = EntityState.Added;
         Context.SaveChanges();
         return entity;
+    }
+
+    public IList<TEntity> AddRange(IList<TEntity> entities)
+    {
+
+        foreach (TEntity entity in entities)
+        {
+            Context.Entry(entity).State = EntityState.Added;
+        }
+
+        Context.SaveChanges();
+
+        return entities;
     }
 
     public TEntity Update(TEntity entity)

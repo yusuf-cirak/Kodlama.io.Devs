@@ -61,7 +61,7 @@ public class KodlamaioDevsContext : DbContext
             a.Property(u => u.PasswordHash).HasColumnName("PasswordHash");
             a.Property(u => u.PasswordSalt).HasColumnName("PasswordSalt");
             a.Property(u => u.AuthenticatorType).HasColumnName("AuthenticatiorType");
-            a.Property(u => u.Status).HasColumnName("Status");
+            a.Property(u => u.Status).HasColumnName("Status").HasDefaultValue(true);
 
             a.HasMany(u => u.RefreshTokens);
             a.HasMany(u => u.UserOperationClaims);
