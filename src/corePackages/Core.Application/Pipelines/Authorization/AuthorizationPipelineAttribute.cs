@@ -8,8 +8,11 @@ namespace Core.Application.Pipelines.Authorization;
 
 
 [AttributeUsage(AttributeTargets.Class)]
-public class AuthorizeAttribute : Attribute
+public class AuthorizationPipelineAttribute : Attribute
 {
-    public string[] Roles { get; set; }
+    /// <summary>
+    /// Define rules seperating with commas
+    /// </summary>
+    public string Roles { get; set; }
 }
 

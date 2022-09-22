@@ -12,7 +12,7 @@ public static class ClaimsPrincipalExtensions
 
     public static List<string>? ClaimRoles(this ClaimsPrincipal claimsPrincipal)
     {
-        return claimsPrincipal?.Claims(ClaimTypes.Role);
+        return claimsPrincipal.Claims(ClaimTypes.Role);
     }
 
     public static int GetUserId(this ClaimsPrincipal claimsPrincipal)

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Application.Pipelines.Authorization;
-using Core.Security.Entities;
 using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Dtos;
 using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
@@ -14,7 +13,7 @@ using MediatR;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.AddProgrammingTechnology
 {
-    [Authorize(Roles = new []{"User","Admin"})]
+    [AuthorizationPipeline(Roles ="User,Admin")]
     public class AddProgrammingTechnologyCommandRequest : IRequest<AddProgrammingTechnologyCommandResponse>,ISecuredRequest
     {
         public int ProgrammingLanguageId { get; set; }
