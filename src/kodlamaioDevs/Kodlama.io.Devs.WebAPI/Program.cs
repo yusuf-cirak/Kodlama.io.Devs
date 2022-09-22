@@ -1,65 +1,27 @@
-﻿using Application;
-using Core.Security.Encryption;
-using Core.Security.JWT;
+﻿using Core.Security;
 using Kodlama.io.Devs.Application;
 using Kodlama.io.Devs.Infrastructure;
 using Kodlama.io.Devs.Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.OpenApi.Models;
+using Kodlama.io.Devs.WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices();
-builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddApplicationServices(); // Extension method from Kodlama.io.Devs.Application>ServiceRegistration.cs
+builder.Services.AddInfrastructureServices(); // Extension method from Kodlama.io.Devs.Infrastructure>ServiceRegistration.cs
+builder.Services.AddPersistenceServices(builder.Configuration); // Extension method from Kodlama.io.Devs.Persistence>ServiceRegistration.cs
 
-builder.Services.AddSecurityServices(); // from Core.Application
+builder.Services.AddSecurityServices(); // Extension method from Core.Application>SecurityServiceRegistration.cs
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(x =>
-{
-    x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        BearerFormat = "JWT",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = JwtBearerDefaults.AuthenticationScheme,
-        Description = "Put **_ONLY_** your JWT Bearer token on textbox below!"
-    });
-    x.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {new OpenApiSecurityScheme
-        {
-            Reference = new OpenApiReference
-            {
-                Id = JwtBearerDefaults.AuthenticationScheme,
-                Type = ReferenceType.SecurityScheme
-            }
-        }, Array.Empty<string>()}
-    });
-});
 
-TokenOptions? tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => opt.TokenValidationParameters = new()
-{
-    ValidateAudience = true,
-    ValidateIssuer = true,
-    ValidateLifetime = true,
-    ValidateIssuerSigningKey = true,
-    ValidAudience = tokenOptions.Audience,
-    ValidIssuer = tokenOptions.Issuer,
-    IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
-});
+builder.Services.AddSwaggerGenServices(); // Extension method from WebAPI>ServiceRegistration.cs
 
-builder.Services.AddHttpClient("GithubUserProfile",config =>
-{
-    config.BaseAddress = new Uri("https://api.github.com/users/");
-    config.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
-});
+builder.Services.AddJwtBearerServices(builder.Configuration); // Extension method from WebAPI>ServiceRegistration.cs
+
+builder.Services.AddHttpClientServices(); // Extension method from WebAPI>ServiceRegistration.cs
 
 var app = builder.Build();
 
