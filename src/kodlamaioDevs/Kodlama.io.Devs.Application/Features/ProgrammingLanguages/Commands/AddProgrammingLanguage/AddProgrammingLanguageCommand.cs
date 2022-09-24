@@ -17,8 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.AddProgrammingLanguage
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
-
-    public class AddProgrammingLanguageCommandRequest:IRequest<AddProgrammingLanguageCommandResponse>
+    public class AddProgrammingLanguageCommandRequest:IRequest<AddProgrammingLanguageCommandResponse>, ISecuredRequest
     {
         public string Name { get; set; }
     }

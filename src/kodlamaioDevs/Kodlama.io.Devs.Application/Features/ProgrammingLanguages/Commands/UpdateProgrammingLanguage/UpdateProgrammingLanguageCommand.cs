@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage;
 
 [AuthorizationPipeline(Roles = "User,Admin")]
-public class UpdateProgrammingLanguageCommandRequest:IRequest<UpdateProgrammingLanguageCommandResponse>
+public class UpdateProgrammingLanguageCommandRequest:IRequest<UpdateProgrammingLanguageCommandResponse>, ISecuredRequest
 {
     public int Id { get; set; }
     public string Name { get; set; }

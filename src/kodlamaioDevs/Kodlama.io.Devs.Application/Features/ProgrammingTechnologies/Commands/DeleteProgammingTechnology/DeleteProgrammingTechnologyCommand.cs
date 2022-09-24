@@ -16,7 +16,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
 
-    public class DeleteProgrammingTechnologyCommandRequest:IRequest<DeleteProgrammingTechnologyCommandResponse>
+    public class DeleteProgrammingTechnologyCommandRequest:IRequest<DeleteProgrammingTechnologyCommandResponse>, ISecuredRequest
     {
         public int Id { get; set; }
     }

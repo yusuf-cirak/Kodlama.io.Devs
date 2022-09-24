@@ -16,7 +16,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Del
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
 
-    public class DeleteProgrammingLanguageCommandRequest:IRequest<DeleteProgrammingLanguageCommandResponse>
+    public class DeleteProgrammingLanguageCommandRequest:IRequest<DeleteProgrammingLanguageCommandResponse>, ISecuredRequest
     {
         public int Id { get; set; }
     }

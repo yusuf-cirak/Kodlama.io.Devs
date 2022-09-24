@@ -17,7 +17,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
 
-    public class UpdateProgrammingTechnologyCommandRequest:IRequest<UpdateProgrammingTechnologyCommandResponse>
+    public class UpdateProgrammingTechnologyCommandRequest:IRequest<UpdateProgrammingTechnologyCommandResponse>, ISecuredRequest
     {
         public int Id { get; set; }
         public int ProgrammingLanguageId { get; set; }
