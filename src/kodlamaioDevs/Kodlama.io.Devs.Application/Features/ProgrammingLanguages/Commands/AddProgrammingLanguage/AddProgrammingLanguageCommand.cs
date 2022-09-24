@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Dtos;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
@@ -14,6 +16,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.AddProgrammingLanguage
 {
+    [AuthorizationPipeline(Roles = "User,Admin")]
+
     public class AddProgrammingLanguageCommandRequest:IRequest<AddProgrammingLanguageCommandResponse>
     {
         public string Name { get; set; }

@@ -14,10 +14,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.DeleteGithubProfile
 {
+    [AuthorizationPipeline(Roles = "User,Admin")]
+
     public class DeleteGithubProfileCommandRequest:IRequest<DeleteGithubProfileCommandResponse>,ISecuredRequest
     {
         public int Id { get; set; }
-        public string[] Roles { get; } = { "User" };
     }
 
     public class DeleteGithubProfileCommandHandler:IRequestHandler<DeleteGithubProfileCommandRequest,DeleteGithubProfileCommandResponse>

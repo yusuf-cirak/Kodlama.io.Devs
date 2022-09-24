@@ -17,10 +17,10 @@ using Microsoft.AspNetCore.Http;
 
 namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.AddGithubProfile
 {
+    [AuthorizationPipeline(Roles = "User,Admin")]
     public class AddGithubProfileCommandRequest:IRequest<AddGithubProfileCommandResponse>,ISecuredRequest
     {
         public string ProfileName { get; set; }
-        public string[] Roles { get; } = { "Admin", "User" };
     }
 
     public class AddGithubProfileCommandHandler:IRequestHandler<AddGithubProfileCommandRequest,AddGithubProfileCommandResponse>

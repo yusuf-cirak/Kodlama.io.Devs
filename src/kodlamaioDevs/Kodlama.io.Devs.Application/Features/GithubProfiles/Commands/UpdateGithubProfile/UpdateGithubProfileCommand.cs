@@ -13,12 +13,13 @@ using MediatR;
 
 namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.UpdateGithubProfile
 {
+    [AuthorizationPipeline(Roles = "User,Admin")]
+
     public class UpdateGithubProfileCommandRequest:IRequest<UpdateGithubProfileCommandResponse>,ISecuredRequest
     {
         public int Id { get; set; }
         public string ProfileName { get; set; }
 
-        public string[] Roles { get; } = { "User" };
     }
 
     public class UpdateGithubProfileCommandHandler:IRequestHandler<UpdateGithubProfileCommandRequest,UpdateGithubProfileCommandResponse>

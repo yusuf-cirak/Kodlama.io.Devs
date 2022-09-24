@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Dtos;
 using Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
@@ -12,6 +14,8 @@ using MediatR;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.DeleteProgammingTechnology
 {
+    [AuthorizationPipeline(Roles = "User,Admin")]
+
     public class DeleteProgrammingTechnologyCommandRequest:IRequest<DeleteProgrammingTechnologyCommandResponse>
     {
         public int Id { get; set; }

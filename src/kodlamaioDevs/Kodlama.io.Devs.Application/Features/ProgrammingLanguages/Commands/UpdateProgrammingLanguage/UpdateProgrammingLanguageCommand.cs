@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.Data;
+using System.Diagnostics;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Dtos;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
@@ -9,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage;
 
+[AuthorizationPipeline(Roles = "User,Admin")]
 public class UpdateProgrammingLanguageCommandRequest:IRequest<UpdateProgrammingLanguageCommandResponse>
 {
     public int Id { get; set; }
