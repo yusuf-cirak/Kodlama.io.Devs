@@ -16,12 +16,12 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
 
-    public class DeleteProgrammingTechnologyCommandRequest:IRequest<DeleteProgrammingTechnologyCommandResponse>, ISecuredRequest
+    public  sealed class DeleteProgrammingTechnologyCommandRequest:IRequest<DeleteProgrammingTechnologyCommandResponse>, ISecuredRequest
     {
         public int Id { get; set; }
     }
 
-    public class DeleteProgrammingTechnologyCommandHandler:IRequestHandler<DeleteProgrammingTechnologyCommandRequest,DeleteProgrammingTechnologyCommandResponse>
+    public sealed class DeleteProgrammingTechnologyCommandHandler:IRequestHandler<DeleteProgrammingTechnologyCommandRequest,DeleteProgrammingTechnologyCommandResponse>
     {
         private readonly IMapper _mapper;
         private readonly IProgrammingTechnologyRepository _programmingTechnologyRepository;
@@ -48,7 +48,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.
         }
     }
 
-    public class DeleteProgrammingTechnologyCommandResponse:DeletedProgrammingTechnologyDto
+    public sealed class DeleteProgrammingTechnologyCommandResponse:DeletedProgrammingTechnologyDto
     {
     }
 }

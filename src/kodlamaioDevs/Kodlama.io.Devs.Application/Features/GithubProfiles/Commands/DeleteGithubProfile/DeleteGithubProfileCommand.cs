@@ -16,12 +16,12 @@ namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.DeleteGit
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
 
-    public class DeleteGithubProfileCommandRequest:IRequest<DeleteGithubProfileCommandResponse>,ISecuredRequest
+    public sealed class DeleteGithubProfileCommandRequest:IRequest<DeleteGithubProfileCommandResponse>,ISecuredRequest
     {
         public int Id { get; set; }
     }
 
-    public class DeleteGithubProfileCommandHandler:IRequestHandler<DeleteGithubProfileCommandRequest,DeleteGithubProfileCommandResponse>
+    public sealed class DeleteGithubProfileCommandHandler:IRequestHandler<DeleteGithubProfileCommandRequest,DeleteGithubProfileCommandResponse>
     {
         private readonly IGithubProfileRepository _githubProfileRepository;
         private readonly GithubProfileBusinessRules _githubProfileBusinessRules;
@@ -47,7 +47,7 @@ namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.DeleteGit
         }
     }
 
-    public class DeleteGithubProfileCommandResponse:DeletedGithubProfileDto
+    public sealed class DeleteGithubProfileCommandResponse:DeletedGithubProfileDto
     {
     }
 }

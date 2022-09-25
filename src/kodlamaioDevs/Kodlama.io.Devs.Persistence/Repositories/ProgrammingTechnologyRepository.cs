@@ -10,7 +10,7 @@ using Kodlama.io.Devs.Persistence.Contexts;
 
 namespace Kodlama.io.Devs.Persistence.Repositories
 {
-    public class ProgrammingTechnologyRepository:EfRepositoryBase<ProgrammingTechnology, KodlamaioDevsContext>,IProgrammingTechnologyRepository
+    public sealed class ProgrammingTechnologyRepository:EfRepositoryBase<ProgrammingTechnology, KodlamaioDevsContext>,IProgrammingTechnologyRepository
     {
         public ProgrammingTechnologyRepository(KodlamaioDevsContext context) : base(context)
         {

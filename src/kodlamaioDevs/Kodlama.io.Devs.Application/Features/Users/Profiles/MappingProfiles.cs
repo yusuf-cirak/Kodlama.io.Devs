@@ -9,7 +9,7 @@ using Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser;
 
 namespace Kodlama.io.Devs.Application.Features.Users.Profiles
 {
-    public class MappingProfiles:Profile
+    public sealed class MappingProfiles:Profile
     {
         public MappingProfiles()
         {

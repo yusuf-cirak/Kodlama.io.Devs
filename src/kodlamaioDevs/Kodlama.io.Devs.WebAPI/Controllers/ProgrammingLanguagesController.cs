@@ -9,7 +9,7 @@ namespace Kodlama.io.Devs.WebAPI.Controllers;
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ProgrammingLanguagesController : BaseController
+    public sealed class ProgrammingLanguagesController : BaseController
     {
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddProgrammingLanguageCommandRequest request)

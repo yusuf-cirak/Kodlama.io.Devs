@@ -18,12 +18,12 @@ using Microsoft.AspNetCore.Http;
 namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.AddGithubProfile
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
-    public class AddGithubProfileCommandRequest:IRequest<AddGithubProfileCommandResponse>,ISecuredRequest
+    public sealed class AddGithubProfileCommandRequest:IRequest<AddGithubProfileCommandResponse>,ISecuredRequest
     {
         public string ProfileName { get; set; }
     }
 
-    public class AddGithubProfileCommandHandler:IRequestHandler<AddGithubProfileCommandRequest,AddGithubProfileCommandResponse>
+    public sealed class AddGithubProfileCommandHandler:IRequestHandler<AddGithubProfileCommandRequest,AddGithubProfileCommandResponse>
     {
         private readonly IMapper _mapper;
         private readonly IGithubProfileRepository _githubProfileRepository;
@@ -56,7 +56,7 @@ namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.AddGithub
         }
     }
 
-    public class AddGithubProfileCommandResponse:AddedGithubProfileDto
+    public sealed class AddGithubProfileCommandResponse:AddedGithubProfileDto
     {
     }
 }

@@ -11,7 +11,7 @@ using Kodlama.io.Devs.Persistence.Contexts;
 
 namespace Kodlama.io.Devs.Persistence.Repositories
 {
-    public class UserRepository:EfRepositoryBase<User,KodlamaioDevsContext>,IUserRepository
+    public sealed class UserRepository:EfRepositoryBase<User,KodlamaioDevsContext>,IUserRepository
     {
         public UserRepository(KodlamaioDevsContext context) : base(context)
         {

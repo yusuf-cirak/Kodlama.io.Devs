@@ -12,12 +12,12 @@ using MediatR;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetProgrammingLanguageById
 {
-    public class GetProgrammingLanguageByIdQueryRequest:IRequest<GetProgrammingLanguageByIdQueryResponse>
+    public sealed class GetProgrammingLanguageByIdQueryRequest:IRequest<GetProgrammingLanguageByIdQueryResponse>
     {
         public int Id { get; set; }
     }
 
-    public class GetProgrammingLanguageByIdQueryHandler:IRequestHandler<GetProgrammingLanguageByIdQueryRequest,GetProgrammingLanguageByIdQueryResponse>
+    public sealed class GetProgrammingLanguageByIdQueryHandler:IRequestHandler<GetProgrammingLanguageByIdQueryRequest,GetProgrammingLanguageByIdQueryResponse>
     {
         private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
         private readonly IMapper _mapper;

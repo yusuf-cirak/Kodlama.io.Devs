@@ -8,7 +8,7 @@ namespace Kodlama.io.Devs.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GithubProfilesController : BaseController
+    public sealed class GithubProfilesController : BaseController
     {
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddGithubProfileCommandRequest request)

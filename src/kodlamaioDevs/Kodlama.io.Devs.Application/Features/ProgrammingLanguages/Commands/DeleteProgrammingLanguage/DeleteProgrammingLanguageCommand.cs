@@ -16,12 +16,12 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Del
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
 
-    public class DeleteProgrammingLanguageCommandRequest:IRequest<DeleteProgrammingLanguageCommandResponse>, ISecuredRequest
+    public sealed class DeleteProgrammingLanguageCommandRequest:IRequest<DeleteProgrammingLanguageCommandResponse>, ISecuredRequest
     {
         public int Id { get; set; }
     }
 
-    public class DeleteProgrammingLanguageCommandHandler:IRequestHandler<DeleteProgrammingLanguageCommandRequest,DeleteProgrammingLanguageCommandResponse>
+    public sealed class DeleteProgrammingLanguageCommandHandler:IRequestHandler<DeleteProgrammingLanguageCommandRequest,DeleteProgrammingLanguageCommandResponse>
     {
         private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
         private readonly ProgrammingLanguageBusinessRules _programmingLanguageBusinessRules;
@@ -47,7 +47,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Del
         }
     }
 
-    public class DeleteProgrammingLanguageCommandResponse:DeletedProgrammingLanguageDto
+    public sealed class DeleteProgrammingLanguageCommandResponse:DeletedProgrammingLanguageDto
     {
     }
 }

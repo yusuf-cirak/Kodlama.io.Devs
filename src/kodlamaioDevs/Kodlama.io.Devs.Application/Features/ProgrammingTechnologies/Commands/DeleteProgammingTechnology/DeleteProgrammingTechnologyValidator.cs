@@ -8,7 +8,7 @@ using FluentValidation;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.DeleteProgammingTechnology
 {
-    public class DeleteProgrammingTechnologyValidator:AbstractValidator<DeleteProgrammingTechnologyCommandRequest>
+    public sealed class DeleteProgrammingTechnologyValidator:AbstractValidator<DeleteProgrammingTechnologyCommandRequest>
     {
         public DeleteProgrammingTechnologyValidator()
         {

@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser
 {
-    public class RegisterUserCommandValidator:AbstractValidator<RegisterUserCommandRequest>
+    public  sealed class RegisterUserCommandValidator:AbstractValidator<RegisterUserCommandRequest>
     {
         public RegisterUserCommandValidator()
         {

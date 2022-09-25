@@ -2,7 +2,7 @@
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.AddProgrammingLanguage;
 
-public class AddProgrammingLanguageCommandValidator:AbstractValidator<AddProgrammingLanguageCommandRequest>
+public sealed class AddProgrammingLanguageCommandValidator:AbstractValidator<AddProgrammingLanguageCommandRequest>
 {
     public AddProgrammingLanguageCommandValidator()
     {

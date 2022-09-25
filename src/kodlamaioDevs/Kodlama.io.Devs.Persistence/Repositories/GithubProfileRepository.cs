@@ -10,7 +10,7 @@ using Kodlama.io.Devs.Persistence.Contexts;
 
 namespace Kodlama.io.Devs.Persistence.Repositories
 {
-    public class GithubProfileRepository:EfRepositoryBase<GithubProfile,KodlamaioDevsContext>,IGithubProfileRepository
+    public sealed class GithubProfileRepository:EfRepositoryBase<GithubProfile,KodlamaioDevsContext>,IGithubProfileRepository
     {
         public GithubProfileRepository(KodlamaioDevsContext context) : base(context)
         {

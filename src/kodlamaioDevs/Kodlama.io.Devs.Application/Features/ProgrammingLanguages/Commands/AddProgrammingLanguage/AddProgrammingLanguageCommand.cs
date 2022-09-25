@@ -22,7 +22,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Add
         public string Name { get; set; }
     }
     
-    public class AddProgrammingLanguageCommandHandler:IRequestHandler<AddProgrammingLanguageCommandRequest,AddProgrammingLanguageCommandResponse>
+    public sealed class AddProgrammingLanguageCommandHandler:IRequestHandler<AddProgrammingLanguageCommandRequest,AddProgrammingLanguageCommandResponse>
     {
         private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
         private readonly ProgrammingLanguageBusinessRules _programmingLanguageBusinessRules;
@@ -52,7 +52,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Add
         }
     }
     
-    public class AddProgrammingLanguageCommandResponse:AddedProgrammingLanguageDto
+    public sealed class AddProgrammingLanguageCommandResponse:AddedProgrammingLanguageDto
     {
     }
 }

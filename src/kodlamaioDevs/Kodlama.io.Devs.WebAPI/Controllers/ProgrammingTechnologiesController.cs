@@ -11,7 +11,7 @@ namespace Kodlama.io.Devs.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProgrammingTechnologiesController : BaseController
+    public sealed class ProgrammingTechnologiesController : BaseController
     {
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddProgrammingTechnologyCommandRequest request)

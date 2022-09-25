@@ -14,12 +14,11 @@ using MediatR;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetProgrammingLanguageList
 {
-    public class GetProgrammingLanguageListQueryRequest:PageRequest,IRequest<GetProgrammingLanguageListQueryResponse>,ISecuredRequest
+    public sealed class GetProgrammingLanguageListQueryRequest:PageRequest,IRequest<GetProgrammingLanguageListQueryResponse>
     {
-        public string[] Roles { get; } = { "Admin","User" };
     }
 
-    public class GetProgrammingLanguageListQueryHandler:IRequestHandler<GetProgrammingLanguageListQueryRequest,GetProgrammingLanguageListQueryResponse>
+    public sealed class GetProgrammingLanguageListQueryHandler:IRequestHandler<GetProgrammingLanguageListQueryRequest,GetProgrammingLanguageListQueryResponse>
     {
         private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
         private readonly IMapper _mapper;
@@ -43,7 +42,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetP
         }
     }
 
-    public class GetProgrammingLanguageListQueryResponse:ProgrammingLanguageListModel
+    public sealed class GetProgrammingLanguageListQueryResponse:ProgrammingLanguageListModel
     {
     }
 }

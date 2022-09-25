@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.DeleteProgrammingLanguage
 {
-    public class DeleteProgrammingLanguageCommandValidator:AbstractValidator<DeleteProgrammingLanguageCommandRequest>
+    public sealed class DeleteProgrammingLanguageCommandValidator:AbstractValidator<DeleteProgrammingLanguageCommandRequest>
     {
         public DeleteProgrammingLanguageCommandValidator()
         {

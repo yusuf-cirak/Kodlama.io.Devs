@@ -18,7 +18,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Rules
 {
-    public class GithubProfileBusinessRules
+    public sealed class GithubProfileBusinessRules
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IGithubProfileRepository _githubProfileRepository;

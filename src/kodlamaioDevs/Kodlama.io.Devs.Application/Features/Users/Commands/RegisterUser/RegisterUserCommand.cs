@@ -15,11 +15,11 @@ using MediatR;
 
 namespace Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser
 {
-    public class RegisterUserCommandRequest:UserForRegisterDto,IRequest<RegisterUserCommandResponse>
+    public sealed class RegisterUserCommandRequest:UserForRegisterDto,IRequest<RegisterUserCommandResponse>
     {
     }
 
-    public class RegisterUserCommandHandler:IRequestHandler<RegisterUserCommandRequest,RegisterUserCommandResponse>
+    public sealed class RegisterUserCommandHandler:IRequestHandler<RegisterUserCommandRequest,RegisterUserCommandResponse>
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
@@ -72,7 +72,7 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser
         }
     }
 
-    public class RegisterUserCommandResponse
+    public sealed class RegisterUserCommandResponse
     {
         public AccessToken AccessToken { get; set; }
     }

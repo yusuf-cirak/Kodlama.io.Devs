@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Rules
 {
-    public class ProgrammingTechnologyBusinessRules
+    public sealed class ProgrammingTechnologyBusinessRules
     {
         private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
         private readonly IProgrammingTechnologyRepository _programmingTechnologyRepository;

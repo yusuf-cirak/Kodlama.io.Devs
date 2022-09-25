@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kodlama.io.Devs.Persistence.Migrations
 {
     [DbContext(typeof(KodlamaioDevsContext))]
-    [Migration("20220910124039_mig")]
-    partial class mig
+    [Migration("20220925105818_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -138,7 +138,9 @@ namespace Kodlama.io.Devs.Persistence.Migrations
                         .HasColumnName("PasswordSalt");
 
                     b.Property<bool>("Status")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
+                        .HasDefaultValue(true)
                         .HasColumnName("Status");
 
                     b.HasKey("Id");

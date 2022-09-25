@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.AddGithubProfile
 {
-    public class AddGithubProfileCommandValidator:AbstractValidator<AddGithubProfileCommandRequest>
+    public sealed class AddGithubProfileCommandValidator:AbstractValidator<AddGithubProfileCommandRequest>
     {
         public AddGithubProfileCommandValidator()
         {

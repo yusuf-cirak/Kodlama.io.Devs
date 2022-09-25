@@ -11,7 +11,7 @@ using MediatR;
 
 namespace Kodlama.io.Devs.Application.Features.Users.Rules
 {
-    public class UserBusinessRules
+    public sealed class UserBusinessRules
     {
         private readonly IUserRepository _userRepository;
 

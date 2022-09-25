@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Rules;
 
-public class ProgrammingLanguageBusinessRules
+public sealed class ProgrammingLanguageBusinessRules
 {
     private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
 

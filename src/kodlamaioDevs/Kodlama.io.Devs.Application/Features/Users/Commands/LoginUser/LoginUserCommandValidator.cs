@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace Kodlama.io.Devs.Application.Features.Users.Commands.LoginUser
 {
-    public class LoginUserCommandValidator:AbstractValidator<LoginUserCommandRequest>
+    public sealed class LoginUserCommandValidator:AbstractValidator<LoginUserCommandRequest>
     {
         public LoginUserCommandValidator()
         {

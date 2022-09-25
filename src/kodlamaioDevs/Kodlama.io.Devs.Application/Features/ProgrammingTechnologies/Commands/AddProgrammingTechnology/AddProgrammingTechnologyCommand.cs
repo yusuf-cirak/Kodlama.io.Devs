@@ -14,13 +14,13 @@ using MediatR;
 namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.AddProgrammingTechnology
 {
     [AuthorizationPipeline(Roles ="User,Admin")]
-    public class AddProgrammingTechnologyCommandRequest : IRequest<AddProgrammingTechnologyCommandResponse>,ISecuredRequest
+    public sealed class AddProgrammingTechnologyCommandRequest : IRequest<AddProgrammingTechnologyCommandResponse>,ISecuredRequest
     {
         public int ProgrammingLanguageId { get; set; }
         public string Name { get; set; }
 
     }
-    public class AddProgrammingTechnologyCommandHandler : IRequestHandler<AddProgrammingTechnologyCommandRequest, AddProgrammingTechnologyCommandResponse>
+    public sealed class AddProgrammingTechnologyCommandHandler : IRequestHandler<AddProgrammingTechnologyCommandRequest, AddProgrammingTechnologyCommandResponse>
     {
         private readonly IProgrammingTechnologyRepository _programmingTechnologyRepository;
         private readonly IMapper _mapper;
@@ -49,7 +49,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.
             return response;
         }
     }
-    public class AddProgrammingTechnologyCommandResponse : AddedProgrammingTechnologyDto
+    public sealed class AddProgrammingTechnologyCommandResponse : AddedProgrammingTechnologyDto
     {
     }
 }

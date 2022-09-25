@@ -12,13 +12,13 @@ using Microsoft.EntityFrameworkCore;
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage;
 
 [AuthorizationPipeline(Roles = "User,Admin")]
-public class UpdateProgrammingLanguageCommandRequest:IRequest<UpdateProgrammingLanguageCommandResponse>, ISecuredRequest
+public sealed class UpdateProgrammingLanguageCommandRequest:IRequest<UpdateProgrammingLanguageCommandResponse>, ISecuredRequest
 {
     public int Id { get; set; }
     public string Name { get; set; }
 }
 
-public class UpdateProgrammingLanguageCommandHandler:IRequestHandler<UpdateProgrammingLanguageCommandRequest,UpdateProgrammingLanguageCommandResponse>
+public sealed class UpdateProgrammingLanguageCommandHandler:IRequestHandler<UpdateProgrammingLanguageCommandRequest,UpdateProgrammingLanguageCommandResponse>
 {
     private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
     private readonly IMapper _mapper;
@@ -47,7 +47,7 @@ public class UpdateProgrammingLanguageCommandHandler:IRequestHandler<UpdateProgr
     }
 }
 
-public class UpdateProgrammingLanguageCommandResponse:UpdatedProgrammingLanguageDto
+public sealed class UpdateProgrammingLanguageCommandResponse:UpdatedProgrammingLanguageDto
 {
     
 }

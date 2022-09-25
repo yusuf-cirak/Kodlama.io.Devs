@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.AddProgrammingTechnology
 {
-    public class AddProgrammingTechnologyCommandValidator:AbstractValidator<AddProgrammingTechnologyCommandRequest>
+    public sealed class AddProgrammingTechnologyCommandValidator:AbstractValidator<AddProgrammingTechnologyCommandRequest>
     {
         public AddProgrammingTechnologyCommandValidator()
         {

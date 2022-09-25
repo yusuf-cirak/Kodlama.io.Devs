@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Kodlama.io.Devs.Persistence.Contexts;
 
-public class KodlamaioDevsContext : DbContext
+public sealed class KodlamaioDevsContext : DbContext
 {
     protected IConfiguration Configuration { get; set; }
     public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }

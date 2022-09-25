@@ -15,14 +15,14 @@ namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.UpdateGit
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
 
-    public class UpdateGithubProfileCommandRequest:IRequest<UpdateGithubProfileCommandResponse>,ISecuredRequest
+    public sealed class UpdateGithubProfileCommandRequest:IRequest<UpdateGithubProfileCommandResponse>,ISecuredRequest
     {
         public int Id { get; set; }
         public string ProfileName { get; set; }
 
     }
 
-    public class UpdateGithubProfileCommandHandler:IRequestHandler<UpdateGithubProfileCommandRequest,UpdateGithubProfileCommandResponse>
+    public sealed class UpdateGithubProfileCommandHandler:IRequestHandler<UpdateGithubProfileCommandRequest,UpdateGithubProfileCommandResponse>
     {
         private readonly IGithubProfileRepository _githubProfileRepository;
         private readonly IMapper _mapper;
@@ -56,7 +56,7 @@ namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Commands.UpdateGit
         }
     }
 
-    public class UpdateGithubProfileCommandResponse:UpdatedGithubProfileDto
+    public sealed class UpdateGithubProfileCommandResponse:UpdatedGithubProfileDto
     {
     }
 }

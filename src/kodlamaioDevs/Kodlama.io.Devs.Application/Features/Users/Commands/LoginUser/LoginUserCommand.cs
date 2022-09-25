@@ -17,11 +17,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kodlama.io.Devs.Application.Features.Users.Commands.LoginUser
 {
-    public class LoginUserCommandRequest:UserForLoginDto,IRequest<LoginUserCommandResponse>
+    public sealed class LoginUserCommandRequest:UserForLoginDto,IRequest<LoginUserCommandResponse>
     {
     }
 
-    public class LoginUserCommandHandler:IRequestHandler<LoginUserCommandRequest,LoginUserCommandResponse>
+    public sealed class LoginUserCommandHandler:IRequestHandler<LoginUserCommandRequest,LoginUserCommandResponse>
     {
         private readonly UserBusinessRules _userBusinessRules;
         private readonly ITokenHelper _tokenHelper;
@@ -58,7 +58,7 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.LoginUser
         }
     }
 
-    public class LoginUserCommandResponse
+    public sealed class LoginUserCommandResponse
     {
         public AccessToken AccessToken { get; set; }
     }

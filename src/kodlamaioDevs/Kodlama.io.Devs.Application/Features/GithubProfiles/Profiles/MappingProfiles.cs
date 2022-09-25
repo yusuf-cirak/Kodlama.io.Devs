@@ -12,7 +12,7 @@ using Kodlama.io.Devs.Domain.Entities;
 
 namespace Kodlama.io.Devs.Application.Features.GithubProfiles.Profiles
 {
-    public class MappingProfiles:Profile
+    public sealed class MappingProfiles:Profile
     {
         public MappingProfiles()
         {

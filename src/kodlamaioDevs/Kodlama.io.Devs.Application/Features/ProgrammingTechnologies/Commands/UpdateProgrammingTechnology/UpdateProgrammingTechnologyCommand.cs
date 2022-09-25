@@ -17,14 +17,14 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.
 {
     [AuthorizationPipeline(Roles = "User,Admin")]
 
-    public class UpdateProgrammingTechnologyCommandRequest:IRequest<UpdateProgrammingTechnologyCommandResponse>, ISecuredRequest
+    public sealed class UpdateProgrammingTechnologyCommandRequest:IRequest<UpdateProgrammingTechnologyCommandResponse>, ISecuredRequest
     {
         public int Id { get; set; }
         public int ProgrammingLanguageId { get; set; }
         public string Name { get; set; }
     }
 
-    public class UpdateProgrammingTechnologyCommandHandler:IRequestHandler<UpdateProgrammingTechnologyCommandRequest,UpdateProgrammingTechnologyCommandResponse>
+    public sealed class UpdateProgrammingTechnologyCommandHandler:IRequestHandler<UpdateProgrammingTechnologyCommandRequest,UpdateProgrammingTechnologyCommandResponse>
     {
         private readonly ProgrammingTechnologyBusinessRules _programmingTechnologyBusinessRules;
         private readonly IMapper _mapper;
@@ -59,7 +59,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Commands.
         }
     }
 
-    public class UpdateProgrammingTechnologyCommandResponse:UpdatedProgrammingTechnologyDto
+    public sealed class UpdateProgrammingTechnologyCommandResponse:UpdatedProgrammingTechnologyDto
     {
     }
 }

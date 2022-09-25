@@ -16,13 +16,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Queries.GetProgrammingTechnologyListDynamic
 {
-    public class GetProgrammingTechnologyListDynamicQueryRequest:IRequest<GetProgrammingTechnologyListDynamicQueryResponse>
+    public sealed class GetProgrammingTechnologyListDynamicQueryRequest:IRequest<GetProgrammingTechnologyListDynamicQueryResponse>
     {
         public Dynamic Dynamic { get; set; }
         public PageRequest PageRequest { get; set; }
     }
 
-    public class GetProgrammingTechnologyListDynamicQueryHandler:IRequestHandler<GetProgrammingTechnologyListDynamicQueryRequest,GetProgrammingTechnologyListDynamicQueryResponse>
+    public sealed class GetProgrammingTechnologyListDynamicQueryHandler:IRequestHandler<GetProgrammingTechnologyListDynamicQueryRequest,GetProgrammingTechnologyListDynamicQueryResponse>
     {
         private readonly IMapper _mapper;
         private readonly IProgrammingTechnologyRepository _programmingTechnologyRepository;
@@ -48,7 +48,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingTechnologies.Queries.G
         }
     }
 
-    public class GetProgrammingTechnologyListDynamicQueryResponse:ProgrammingTechnologyListModel
+    public sealed class GetProgrammingTechnologyListDynamicQueryResponse:ProgrammingTechnologyListModel
     {
     }
 }
