@@ -2,6 +2,7 @@
 using Kodlama.io.Devs.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace Kodlama.io.Devs.Persistence.Contexts;
 
@@ -30,82 +31,9 @@ public sealed class KodlamaioDevsContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<ProgrammingLanguage>(a =>
-        {
-            a.ToTable("ProgrammingLanguages").HasKey(k => k.Id);
-            a.Property(pl => pl.Id).HasColumnName("Id");
-            a.Property(pl => pl.Name).HasColumnName("Name");
-
-            a.HasMany(pl => pl.ProgrammingTechnologies);
-        });
 
 
-        modelBuilder.Entity<ProgrammingTechnology>(a =>
-        {
-            a.ToTable("ProgrammingTechnologies").HasKey(pt => pt.Id);
-            a.Property(pl => pl.Id).HasColumnName("Id");
-            a.Property(pl => pl.ProgrammingLanguageId).HasColumnName("ProgrammingLanguageId");
-            a.Property(pl => pl.Name).HasColumnName("Name");
-
-            a.HasOne(pt => pt.ProgrammingLanguage);
-
-        });
-
-        modelBuilder.Entity<User>(a =>
-        {
-            a.ToTable("Users").HasKey(u => u.Id);
-            a.Property(u => u.Id).HasColumnName("Id");
-            a.Property(u => u.FirstName).HasColumnName("FirstName");
-            a.Property(u => u.LastName).HasColumnName("LastName");
-            a.Property(u => u.Email).HasColumnName("Email");
-            a.Property(u => u.PasswordHash).HasColumnName("PasswordHash");
-            a.Property(u => u.PasswordSalt).HasColumnName("PasswordSalt");
-            a.Property(u => u.AuthenticatorType).HasColumnName("AuthenticatiorType");
-            a.Property(u => u.Status).HasColumnName("Status").HasDefaultValue(true);
-
-            a.HasMany(u => u.RefreshTokens);
-            a.HasMany(u => u.UserOperationClaims);
-        });
-
-        modelBuilder.Entity<OperationClaim>(a =>
-        {
-            a.ToTable("OperationClaims").HasKey(o => o.Id);
-            a.Property(o => o.Id).HasColumnName("Id");
-            a.Property(o => o.Name).HasColumnName("Name");
-
-        });
-
-        modelBuilder.Entity<UserOperationClaim>(a =>
-        {
-            a.ToTable("UserOperationClaims").HasKey(u => u.Id);
-            a.Property(uop => uop.Id).HasColumnName("Id");
-            a.Property(uop => uop.UserId).HasColumnName("UserId");
-            a.Property(uop => uop.OperationClaimId).HasColumnName("OperationClaimId");
-
-            a.HasOne(uop => uop.OperationClaim);
-            a.HasOne(uop => uop.User);
-        });
-
-
-        modelBuilder.Entity<GithubProfile>(a =>
-        {
-            a.ToTable("GithubProfiles").HasKey(g => g.Id);
-            a.Property(g => g.Id).HasColumnName("Id");
-            a.Property(g => g.UserId).HasColumnName("UserId");
-            a.Property(g => g.Login).HasColumnName("Login");
-            a.Property(g => g.HtmlUrl).HasColumnName("HtmlUrl");
-            a.Property(g => g.Name).HasColumnName("Name");
-            a.Property(g => g.Company).HasColumnName("Company");
-            a.Property(g => g.Blog).HasColumnName("Blog");
-            a.Property(g => g.Location).HasColumnName("Location");
-            a.Property(g => g.PublicRepos).HasColumnName("PublicRepos");
-            a.Property(g => g.Followers).HasColumnName("Followers");
-            a.Property(g => g.Following).HasColumnName("Following");
-
-            a.HasOne(g => g.User);
-        });
-
-
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         ProgrammingLanguage[] programmingLanguageEntitySeeds = { new(1, "C"), new(2, "C++"), new(3, "C#") };
         modelBuilder.Entity<ProgrammingLanguage>().HasData(programmingLanguageEntitySeeds);

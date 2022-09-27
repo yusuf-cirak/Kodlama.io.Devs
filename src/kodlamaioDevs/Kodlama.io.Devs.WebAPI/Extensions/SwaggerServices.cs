@@ -16,7 +16,7 @@ namespace Kodlama.io.Devs.WebAPI.Extensions
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = JwtBearerDefaults.AuthenticationScheme,
-                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below!"
+                    Description = "Put your JWT Bearer token on textbox below!"
                 });
                 x.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
