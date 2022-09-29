@@ -74,11 +74,7 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
 
     public async Task<IList<TEntity>> AddRangeAsync(IList<TEntity> entities)
     {
-
-        foreach (TEntity entity in entities)
-        {
-            Context.Entry(entity).State = EntityState.Added;
-        }
+        await Context.AddRangeAsync(entities);
 
         await Context.SaveChangesAsync();
 
@@ -145,11 +141,7 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
 
     public IList<TEntity> AddRange(IList<TEntity> entities)
     {
-
-        foreach (TEntity entity in entities)
-        {
-            Context.Entry(entity).State = EntityState.Added;
-        }
+        Context.AddRange(entities);
 
         Context.SaveChanges();
 
