@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
 {
-    public sealed class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
+    public sealed class RefreshTokenConfiguration : BaseEntityConfiguration<RefreshToken>
     {
-        public void Configure(EntityTypeBuilder<RefreshToken> builder)
+        public override void Configure(EntityTypeBuilder<RefreshToken> builder)
         {
-            builder.ToTable("RefreshTokens").HasKey(rt => rt.Id);
-            builder.Property(rt => rt.Id).HasColumnName("Id");
+            builder.ToTable("RefreshTokens");
+
             builder.Property(rt => rt.UserId).HasColumnName("UserId");
             builder.Property(rt => rt.Expires).HasColumnName("Expires");
             builder.Property(rt => rt.Created).HasColumnName("Created");

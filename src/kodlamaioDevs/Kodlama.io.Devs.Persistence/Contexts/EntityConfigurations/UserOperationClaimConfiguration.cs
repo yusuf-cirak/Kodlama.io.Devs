@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
 {
-    public sealed class UserOperationClaimConfiguration : IEntityTypeConfiguration<UserOperationClaim>
+    public sealed class UserOperationClaimConfiguration : BaseEntityConfiguration<UserOperationClaim>
     {
         public void Configure(EntityTypeBuilder<UserOperationClaim> builder)
         {
-            builder.ToTable("UserOperationClaims").HasKey(u => u.Id);
-
-            builder.Property(uop => uop.Id).HasColumnName("Id");
+            builder.ToTable("UserOperationClaims");
 
             builder.Property(uop => uop.UserId).HasColumnName("UserId").IsRequired();
 

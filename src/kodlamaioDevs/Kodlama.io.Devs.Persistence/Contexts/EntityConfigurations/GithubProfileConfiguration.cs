@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
 {
-    public sealed class GithubProfileConfiguration : IEntityTypeConfiguration<GithubProfile>
+    public sealed class GithubProfileConfiguration : BaseEntityConfiguration<GithubProfile>
     {
-        public void Configure(EntityTypeBuilder<GithubProfile> builder)
+        public override void Configure(EntityTypeBuilder<GithubProfile> builder)
         {
-            builder.ToTable("GithubProfiles").HasKey(g => g.Id);
+            base.Configure(builder);
 
-            builder.Property(g => g.Id).HasColumnName("Id");
+            builder.ToTable("GithubProfiles");
 
             builder.Property(g => g.UserId).HasColumnName("UserId");
 

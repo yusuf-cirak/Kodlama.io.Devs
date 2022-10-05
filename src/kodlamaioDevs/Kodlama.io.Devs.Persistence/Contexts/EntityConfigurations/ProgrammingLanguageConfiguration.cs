@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
 {
-    public sealed class ProgrammingLanguageConfiguration : IEntityTypeConfiguration<ProgrammingLanguage>
+    public sealed class ProgrammingLanguageConfiguration : BaseEntityConfiguration<ProgrammingLanguage>
     {
-        public void Configure(EntityTypeBuilder<ProgrammingLanguage> builder)
+        public override void Configure(EntityTypeBuilder<ProgrammingLanguage> builder)
         {
-            builder.ToTable("ProgrammingLanguages").HasKey(k => k.Id);
-
-            builder.Property(pl => pl.Id).HasColumnName("Id");
+            
+            builder.ToTable("ProgrammingLanguages");
 
             builder.Property(pl => pl.Name).HasColumnName("Name").IsRequired();
 
