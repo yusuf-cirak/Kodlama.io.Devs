@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Kodlama.io.Devs.Application.Services.UserOperationClaimService;
 using Kodlama.io.Devs.Application.Services.AuthService;
+using Kodlama.io.Devs.Application.Features.OperationClaims.Rules;
+using Kodlama.io.Devs.Application.Features.UserOperationClaims.Rules;
 
 namespace Kodlama.io.Devs.Application
 {
@@ -41,6 +43,11 @@ namespace Kodlama.io.Devs.Application
             services.AddScoped<AuthBusinessRules>();
 
             services.AddScoped<GithubProfileBusinessRules>();
+
+            services.AddScoped<OperationClaimBusinessRules>();
+
+            services.AddScoped<UserOperationClaimBusinessRules>();
+
 
 
 
