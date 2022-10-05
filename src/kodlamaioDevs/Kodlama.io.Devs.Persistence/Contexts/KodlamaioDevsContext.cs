@@ -16,6 +16,8 @@ public sealed class KodlamaioDevsContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<OperationClaim> OperationClaims { get; set; }
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
+
     public DbSet<GithubProfile> GithubProfiles { get; set; }
 
 
@@ -32,8 +34,9 @@ public sealed class KodlamaioDevsContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
-
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+
 
         ProgrammingLanguage[] programmingLanguageEntitySeeds = { new(1, "C"), new(2, "C++"), new(3, "C#") };
         modelBuilder.Entity<ProgrammingLanguage>().HasData(programmingLanguageEntitySeeds);

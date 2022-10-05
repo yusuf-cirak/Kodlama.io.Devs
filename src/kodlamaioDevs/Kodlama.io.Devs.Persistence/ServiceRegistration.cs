@@ -25,6 +25,8 @@ public static class ServiceRegistration
         services.AddScoped<IUserOperationClaimRepository,UserOperationClaimRepository>();
         services.AddScoped<IOperationClaimRepository, OperationClaimRepository>();
 
+        services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+
 
 
 

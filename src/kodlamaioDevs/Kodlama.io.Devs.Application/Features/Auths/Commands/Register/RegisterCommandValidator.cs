@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Security.Dtos;
 using FluentValidation;
 
-namespace Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser
+namespace Kodlama.io.Devs.Application.Features.Auths.Commands.RegisterUser
 {
-    public  sealed class RegisterUserCommandValidator:AbstractValidator<RegisterUserCommandRequest>
+    public  sealed class RegisterCommandValidator:AbstractValidator<UserForRegisterDto>
     {
-        public RegisterUserCommandValidator()
+        public RegisterCommandValidator()
         {
             RuleFor(u => u.Email).NotEmpty().EmailAddress().WithMessage("Invalid e-mail format");
 

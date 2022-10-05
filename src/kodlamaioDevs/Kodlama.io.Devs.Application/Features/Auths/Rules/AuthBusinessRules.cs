@@ -8,14 +8,15 @@ using Core.Security.Entities;
 using Core.Security.Hashing;
 using Kodlama.io.Devs.Application.Services.Repositories;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-namespace Kodlama.io.Devs.Application.Features.Users.Rules
+namespace Kodlama.io.Devs.Application.Features.Auths.Rules
 {
-    public sealed class UserBusinessRules
+    public sealed class AuthBusinessRules
     {
         private readonly IUserRepository _userRepository;
 
-        public UserBusinessRules(IUserRepository userRepository)
+        public AuthBusinessRules(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
@@ -38,12 +39,17 @@ namespace Kodlama.io.Devs.Application.Features.Users.Rules
             }
         }
 
-        public void UserShouldExistBeforeLogin(User? user)
+        public async Task<User> UserShouldExistBeforeLogin(string email)
         {
+            User? user = await _userRepository.Query().Include(p => p.UserOperationClaims).ThenInclude(u => u.OperationClaim)
+                .FirstOrDefaultAsync(u => u.Email == email);
+
             if (user==null)
             {
                 throw new BusinessException("User is null");
             }
+
+            return user;
         }
     }
 }

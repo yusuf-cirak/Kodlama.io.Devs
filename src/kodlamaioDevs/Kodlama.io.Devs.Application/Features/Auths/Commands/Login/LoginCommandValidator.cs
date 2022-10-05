@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 
-namespace Kodlama.io.Devs.Application.Features.Users.Commands.LoginUser
+namespace Kodlama.io.Devs.Application.Features.Auths.Commands.Login
 {
-    public sealed class LoginUserCommandValidator:AbstractValidator<LoginUserCommandRequest>
+    public sealed class LoginCommandValidator:AbstractValidator<LoginCommandRequest>
     {
-        public LoginUserCommandValidator()
+        public LoginCommandValidator()
         {
             RuleFor(u=>u.Email).NotEmpty().EmailAddress().WithMessage("Please check your email format");
 

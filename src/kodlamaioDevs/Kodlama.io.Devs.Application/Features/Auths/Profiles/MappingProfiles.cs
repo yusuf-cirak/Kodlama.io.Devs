@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Security.Dtos;
 using Core.Security.Entities;
-using Kodlama.io.Devs.Application.Features.Users.Commands.RegisterUser;
+using Kodlama.io.Devs.Application.Features.Auths.Commands.RegisterUser;
 
-namespace Kodlama.io.Devs.Application.Features.Users.Profiles
+namespace Kodlama.io.Devs.Application.Features.Auths.Profiles
 {
     public sealed class MappingProfiles:Profile
     {
         public MappingProfiles()
         {
-            CreateMap<RegisterUserCommandRequest, User>();
+            CreateMap<UserForRegisterDto, User>();
         }
     }
 }

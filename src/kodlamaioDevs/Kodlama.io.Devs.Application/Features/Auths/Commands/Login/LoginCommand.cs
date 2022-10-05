@@ -10,36 +10,34 @@ using Core.Security.Dtos;
 using Core.Security.Entities;
 using Core.Security.Hashing;
 using Core.Security.JWT;
-using Kodlama.io.Devs.Application.Features.Users.Rules;
+using Kodlama.io.Devs.Application.Features.Auths.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kodlama.io.Devs.Application.Features.Users.Commands.LoginUser
+namespace Kodlama.io.Devs.Application.Features.Auths.Commands.Login
 {
-    public sealed class LoginUserCommandRequest:UserForLoginDto,IRequest<LoginUserCommandResponse>
+    public sealed class LoginCommandRequest:UserForLoginDto,IRequest<LoginCommandResponse>
     {
     }
 
-    public sealed class LoginUserCommandHandler:IRequestHandler<LoginUserCommandRequest,LoginUserCommandResponse>
+    public sealed class LoginCommandHandler:IRequestHandler<LoginCommandRequest,LoginCommandResponse>
     {
-        private readonly UserBusinessRules _userBusinessRules;
+        private readonly AuthBusinessRules _userBusinessRules;
         private readonly ITokenHelper _tokenHelper;
         private readonly IUserRepository _userRepository;
 
-        public LoginUserCommandHandler(UserBusinessRules userBusinessRules, ITokenHelper tokenHelper, IUserRepository userRepository)
+        public LoginCommandHandler(AuthBusinessRules userBusinessRules, ITokenHelper tokenHelper, IUserRepository userRepository)
         {
             _userBusinessRules = userBusinessRules;
             _tokenHelper = tokenHelper;
             _userRepository = userRepository;
         }
 
-        public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
+        public async Task<LoginCommandResponse> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
         {
-            User? user = await _userRepository.Query().Include(p => p.UserOperationClaims).ThenInclude(u=>u.OperationClaim)
-                .FirstOrDefaultAsync(u => u.Email == request.Email);
-
-            _userBusinessRules.UserShouldExistBeforeLogin(user);
+ 
+            var user = await _userBusinessRules.UserShouldExistBeforeLogin(request.Email);
 
             _userBusinessRules.UserCredentialsMustMatchBeforeLogin(request.Password, user.PasswordHash,
                 user.PasswordSalt);
@@ -58,7 +56,7 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.LoginUser
         }
     }
 
-    public sealed class LoginUserCommandResponse
+    public sealed class LoginCommandResponse
     {
         public AccessToken AccessToken { get; set; }
     }
