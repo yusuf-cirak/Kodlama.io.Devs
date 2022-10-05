@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Persistence.Paging;
 using Core.Security.Entities;
 using Kodlama.io.Devs.Application.Features.OperationClaims.Models;
@@ -7,13 +8,16 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Application.Features.OperationClaims.Queries.GetList
 {
-    public class GetOperationClaimListQueryRequest:IRequest<GetOperationClaimListQueryResponse>
+    [AuthorizationPipeline(Roles = "Admin")]
+
+    public class GetOperationClaimListQueryRequest:IRequest<GetOperationClaimListQueryResponse>,ISecuredRequest
     {
     }
 

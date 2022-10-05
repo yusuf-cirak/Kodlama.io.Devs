@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Security.Entities;
 using Kodlama.io.Devs.Application.Features.OperationClaims.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Application.Features.OperationClaims.Commands.Create
 {
-    public sealed class CreateOperationClaimCommandRequest : IRequest<bool>
+    [AuthorizationPipeline(Roles = "Admin")]
+    public sealed class CreateOperationClaimCommandRequest : IRequest<bool>,ISecuredRequest
     {
         public string Name { get; set; }
     }

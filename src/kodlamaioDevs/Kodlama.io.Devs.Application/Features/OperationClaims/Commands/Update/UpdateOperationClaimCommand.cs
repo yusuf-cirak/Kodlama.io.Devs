@@ -1,16 +1,20 @@
 ﻿using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Kodlama.io.Devs.Application.Features.OperationClaims.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Application.Features.OperationClaims.Commands.Update
 {
-    public sealed class UpdateOperationClaimCommandRequest:IRequest<bool>
+    [AuthorizationPipeline(Roles = "Admin")]
+
+    public sealed class UpdateOperationClaimCommandRequest:IRequest<bool>,ISecuredRequest
     {
         public int Id { get; set; }
         public string Name { get; set; }

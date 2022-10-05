@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Security.Entities;
 using Kodlama.io.Devs.Application.Features.UserOperationClaims.Dtos;
 using Kodlama.io.Devs.Application.Features.UserOperationClaims.Models;
@@ -6,13 +7,16 @@ using Kodlama.io.Devs.Application.Features.UserOperationClaims.Rules;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Application.Features.UserOperationClaims.Queries.GetList
 {
-    public sealed class GetUserOperationClaimsListQueryRequest:IRequest<GetUserOperationClaimsListQueryResponse>
+    [AuthorizationPipeline(Roles = "Admin")]
+
+    public sealed class GetUserOperationClaimsListQueryRequest:IRequest<GetUserOperationClaimsListQueryResponse>,ISecuredRequest
     {
         public int UserId { get; set; }
     }

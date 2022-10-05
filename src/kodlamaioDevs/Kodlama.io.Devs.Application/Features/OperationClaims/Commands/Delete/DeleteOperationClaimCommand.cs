@@ -1,4 +1,5 @@
-﻿using Kodlama.io.Devs.Application.Features.OperationClaims.Rules;
+﻿using Core.Application.Pipelines.Authorization;
+using Kodlama.io.Devs.Application.Features.OperationClaims.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
 using MediatR;
 using System;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Application.Features.OperationClaims.Commands.Delete
 {
-    public sealed class DeleteOperationClaimCommandRequest:IRequest<bool>
+    [AuthorizationPipeline(Roles = "Admin")]
+    public sealed class DeleteOperationClaimCommandRequest:IRequest<bool>,ISecuredRequest
     {
         public int Id { get; set; }
     }
