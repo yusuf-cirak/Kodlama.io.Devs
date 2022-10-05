@@ -11,7 +11,7 @@ namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
 {
     public sealed class UserOperationClaimConfiguration : BaseEntityConfiguration<UserOperationClaim>
     {
-        public void Configure(EntityTypeBuilder<UserOperationClaim> builder)
+        public override void Configure(EntityTypeBuilder<UserOperationClaim> builder)
         {
             builder.ToTable("UserOperationClaims");
 
