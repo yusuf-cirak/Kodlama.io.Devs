@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kodlama.io.Devs.Persistence.Migrations
 {
     [DbContext(typeof(KodlamaioDevsContext))]
-    [Migration("20221005143505_initial")]
+    [Migration("20221007143614_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

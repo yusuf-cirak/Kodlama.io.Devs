@@ -13,6 +13,8 @@ namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
     {
         public override void Configure(EntityTypeBuilder<RefreshToken> builder)
         {
+            base.Configure(builder);
+
             builder.ToTable("RefreshTokens");
 
             builder.Property(rt => rt.UserId).HasColumnName("UserId");

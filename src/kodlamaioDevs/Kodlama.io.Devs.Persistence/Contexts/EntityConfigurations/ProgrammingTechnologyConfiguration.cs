@@ -13,6 +13,7 @@ namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
     {
         public override void Configure(EntityTypeBuilder<ProgrammingTechnology> builder)
         {
+            base.Configure(builder);
             builder.ToTable("ProgrammingTechnologies");
 
             builder.Property(pl => pl.ProgrammingLanguageId).HasColumnName("ProgrammingLanguageId").IsRequired();

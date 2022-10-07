@@ -13,6 +13,8 @@ namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
     {
         public override void Configure(EntityTypeBuilder<UserOperationClaim> builder)
         {
+            base.Configure(builder);
+
             builder.ToTable("UserOperationClaims");
 
             builder.Property(uop => uop.UserId).HasColumnName("UserId").IsRequired();

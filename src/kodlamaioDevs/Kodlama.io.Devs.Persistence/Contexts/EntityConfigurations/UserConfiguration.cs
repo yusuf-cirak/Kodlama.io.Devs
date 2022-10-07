@@ -14,6 +14,8 @@ namespace Kodlama.io.Devs.Persistence.Contexts.EntityConfigurations
     {
         public override void Configure(EntityTypeBuilder<User> builder)
         {
+            base.Configure(builder);
+
             builder.ToTable("Users");
 
             builder.Property(u => u.FirstName).HasColumnName("FirstName").IsRequired();
